@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="Sat_Apps_Mission_Control.RPMView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sat_Apps_Mission_Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:Series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:datavis="using:WinRTXamlToolkit.Controls.DataVisualization"
+    >
+
+    <Grid Background="White" 
+                HorizontalAlignment="Center"
+                >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Revolutions per minute" />
+        <Border
+            Grid.Row="1"
+            Background="White"
+            Margin="5"
+            Width="450">
+            <controls:Gauge x:ConnectionId='2'
+                x:Name="gaugeRPM"
+                Minimum="0"
+                Maximum="1800"
+                Height="{Binding Value}"
+                Value="{Binding Value}"
+                Unit="rpm" />
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button x:ConnectionId='1' x:Name="buttonRPMStart" Content="Start"                               />
+        </StackPanel>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,95 @@
+﻿<UserControl x:ConnectionId='1'
+    x:Class="Sat_Apps_Mission_Control.SatKitLive"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sat_Apps_Mission_Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Height="386" Width="250" >
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BlueBrush" Color="#FF1C90D1"/>
+        <SolidColorBrush x:Key="DarkGreyBrush" Color="#FF363636"/>
+        <SolidColorBrush x:Key="MidGreyBrush" Color="#FF7A7A7A"/>
+        <SolidColorBrush x:Key="EggshellBrush" Color="#FFFAFFF7"/>
+        <SolidColorBrush x:Key="OrangeBrush" Color="#FFFF9C1E"/>
+    </UserControl.Resources>
+    <Border x:ConnectionId='2' x:Name="SensorsLiveGrid" BorderBrush="{StaticResource MidGreyBrush}" BorderThickness="1" Padding="12" Background="#FFeeeeee" Margin="0,0,0,0">
+        <RelativePanel Width="250">
+            <StackPanel Orientation="Vertical">
+                <StackPanel x:ConnectionId='3' x:Name="Accelerometer" Margin="0,0,0,10">
+                    <TextBlock Text="Accelerometer"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="40" Height="20" Stroke="Green"  />
+                        <Ellipse Width="20" Height="40" Stroke="Green" Margin="-40,0,0,0" />
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="X" Margin="0,0,30,0"/>
+                                <TextBlock Text="Y" Margin="0,0,30,0"/>
+                                <TextBlock Text="Z" Margin="0,0,30,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:ConnectionId='16' x:Name="accelX"                                       Margin="0,0,30,0"/>
+                                <TextBlock x:ConnectionId='17' x:Name="accelY"                                       Margin="0,0,30,0"/>
+                                <TextBlock x:ConnectionId='18' x:Name="accelZ"                                       Margin="0,0,30,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:ConnectionId='4' x:Name="Compass" Margin="0,0,0,10">
+                    <TextBlock Text="Compass"/>
+                    <Ellipse StrokeThickness="6" Fill="#FF9893CB" Width="80" Height="80">
+                        <Ellipse.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Reflect">
+                                <GradientStop Color="#FF9893CB" Offset="0"/>
+                                <GradientStop Color="#FF2525AA" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Stroke>
+                    </Ellipse>
+                    <Image x:ConnectionId='13' x:Name="CompassPointer" Source="Assets/compasspointer.png" Width="40" Margin="0,-70,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <CompositeTransform x:ConnectionId='15'                                                />
+                        </Image.RenderTransform>
+                        <Image.Projection>
+                            <PlaneProjection CenterOfRotationX="0" CenterOfRotationY="0"/>
+                        </Image.Projection>
+                    </Image>
+                    <TextBlock Text="N" Margin="150,-88,150,0" />
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock x:ConnectionId='14' x:Name="CompassAngle"                                             />
+                        <TextBlock Text=" degrees"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:ConnectionId='5' x:Name="Light" Margin="0,0,0,10">
+                    <TextBlock Text="Light"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:ConnectionId='9' x:Name="LightImage" Margin="0,0,30,0" Source="Assets/LightBlub.png" Width="40"/>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="V" Margin="0,0,30,0"/>
+                                <TextBlock Text="UV" Margin="0,0,30,0"/>
+                                <TextBlock Text="IR" Margin="0,0,30,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:ConnectionId='10' x:Name="lightV"                                                   Margin="0,0,30,0"/>
+                                <TextBlock x:ConnectionId='11' x:Name="lightUV"                                             Margin="0,0,30,0"/>
+                                <TextBlock x:ConnectionId='12' x:Name="lightIR"                                             Margin="0,0,30,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:ConnectionId='6' x:Name="Temperature" Margin="0,0,0,10">
+                    <Image x:ConnectionId='7' x:Name="TempIamge"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Temperature " Margin="0,0,30,0"/>
+                        <TextBlock x:ConnectionId='8' x:Name="tempDegrees"                                                      Margin="0,0,5,0"/>
+                        <TextBlock Text="C"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+        </RelativePanel>
+    </Border>
+</UserControl>
+

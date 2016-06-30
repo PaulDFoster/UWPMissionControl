@@ -1,0 +1,94 @@
+﻿<UserControl
+    x:Class="Sat_Apps_Mission_Control.SatKitLive"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sat_Apps_Mission_Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Height="386" Width="250" >
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BlueBrush" Color="#FF1C90D1"/>
+        <SolidColorBrush x:Key="DarkGreyBrush" Color="#FF363636"/>
+        <SolidColorBrush x:Key="MidGreyBrush" Color="#FF7A7A7A"/>
+        <SolidColorBrush x:Key="EggshellBrush" Color="#FFFAFFF7"/>
+        <SolidColorBrush x:Key="OrangeBrush" Color="#FFFF9C1E"/>
+    </UserControl.Resources>
+    <Border x:Name="SensorsLiveGrid" BorderBrush="{StaticResource MidGreyBrush}" BorderThickness="1" Padding="12" Background="#FFeeeeee" Margin="0,0,0,0">
+        <RelativePanel Width="250">
+            <StackPanel Orientation="Vertical">
+                <StackPanel x:Name="Accelerometer" Margin="0,0,0,10">
+                    <TextBlock Text="Accelerometer"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="40" Height="20" Stroke="Green"  />
+                        <Ellipse Width="20" Height="40" Stroke="Green" Margin="-40,0,0,0" />
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="X" Margin="0,0,30,0"/>
+                                <TextBlock Text="Y" Margin="0,0,30,0"/>
+                                <TextBlock Text="Z" Margin="0,0,30,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="accelX" Text="{x:Bind SIKdata.X,Mode=OneWay}" Margin="0,0,30,0"/>
+                                <TextBlock x:Name="accelY" Text="{x:Bind SIKdata.Y,Mode=OneWay}" Margin="0,0,30,0"/>
+                                <TextBlock x:Name="accelZ" Text="{x:Bind SIKdata.Z,Mode=OneWay}" Margin="0,0,30,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="Compass" Margin="0,0,0,10">
+                    <TextBlock Text="Compass"/>
+                    <Ellipse StrokeThickness="6" Fill="#FF9893CB" Width="80" Height="80">
+                        <Ellipse.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Reflect">
+                                <GradientStop Color="#FF9893CB" Offset="0"/>
+                                <GradientStop Color="#FF2525AA" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Stroke>
+                    </Ellipse>
+                    <Image x:Name="CompassPointer" Source="Assets/compasspointer.png" Width="40" Margin="0,-70,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <CompositeTransform Rotation="{x:Bind SIKdata.Heading,Mode=OneWay}"/>
+                        </Image.RenderTransform>
+                        <Image.Projection>
+                            <PlaneProjection CenterOfRotationX="0" CenterOfRotationY="0"/>
+                        </Image.Projection>
+                    </Image>
+                    <TextBlock Text="N" Margin="150,-88,150,0" />
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock x:Name="CompassAngle" Text="{x:Bind SIKdata.Heading,Mode=OneWay}" />
+                        <TextBlock Text=" degrees"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="Light" Margin="0,0,0,10">
+                    <TextBlock Text="Light"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="LightImage" Margin="0,0,30,0" Source="Assets/LightBlub.png" Width="40"/>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="V" Margin="0,0,30,0"/>
+                                <TextBlock Text="UV" Margin="0,0,30,0"/>
+                                <TextBlock Text="IR" Margin="0,0,30,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="lightV" Text="{x:Bind Path=SIKdata.Visible, Mode=OneWay}" Margin="0,0,30,0"/>
+                                <TextBlock x:Name="lightUV" Text="{x:Bind Path=SIKdata.UV,Mode=OneWay}" Margin="0,0,30,0"/>
+                                <TextBlock x:Name="lightIR" Text="{x:Bind Path=SIKdata.IR,Mode=OneWay}" Margin="0,0,30,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="Temperature" Margin="0,0,0,10">
+                    <Image x:Name="TempIamge"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Temperature " Margin="0,0,30,0"/>
+                        <TextBlock x:Name="tempDegrees" Text="{x:Bind Path=SIKdata.Temperature,Mode=OneWay}" Margin="0,0,5,0"/>
+                        <TextBlock Text="C"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+        </RelativePanel>
+    </Border>
+</UserControl>
